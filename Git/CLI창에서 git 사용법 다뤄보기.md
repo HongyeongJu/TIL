@@ -166,6 +166,30 @@ Date:   Thu Aug 5 11:37:57 2021 +0900
 
 
 
+## GIT BACKUP
+
+원격 저장소(remote repository)에 로컬 저장소의 코드를 업로드
+
+
+
+### `git remote`
+
+원격저장소 정보 출력
+
+- `git remote add [이름] [주소]`
+  - `git remote add origin https://github.com/HongyeongJu/git-practice.git`
+- `git remote -v` :상세 정보 출력
+
+
+
+## `git push [이름] [브런치]`
+
+원격저장소에 로컬저장소를 업로드
+
+
+
+
+
 # CLI창에서 git 사용법 다뤄보기.
 
 
