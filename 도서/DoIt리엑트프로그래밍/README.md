@@ -9,9 +9,9 @@
 ## 목차
 
 - 목차
-- 리액트 기본 익히기
-  1. 리액트 시작하기
-  2. 
+- [리액트 기본 익히기](#리액트-기본-익히기)
+  1. [리액트 시작하기](#리액트-시작하기)
+  2. [리액트 ES6 문법 액기스](#리액트-ES6-문법-액기스)
 
 
 
@@ -137,3 +137,278 @@ var getTotal = function (cart) {
 var myCart = `장바구니에 ${cart.name} 가 있습니다. 총 금액은 ${getTotal(cart)} 입니다.`;
 ```
 
+
+
+### 02-2 전개 연산자
+
+#### 기존 ES6의 배열의 일부 요소를 잘라내거나 연결하는 방법
+
+```javascript
+var array1 = ['one', 'two'];
+var array2 = ['three', 'four'];
+var combined = [array1[0], array1[1], array2[0], array2[1]];
+var combined = array1.concat(array2);
+var combine = [].concat(array1, array2);
+var first = array1[0];
+var second = array1[1];
+var three = array1[2] || 'empty';
+function func(){
+    var args = Array.prototype.slice.call(arguments);
+    var first = args[0];
+    var others = args.slice(1, args.length);
+}
+```
+
+
+
+#### 전개연산자를 도입
+
+```javascript
+var array1 = ['one', 'two'];
+var array2 = ['three', 'four'];
+const combined = [...array1, ...array2];
+// 결과: combined = ['one', 'two', 'three', 'four']
+const [first, second, three ='empty', ...others] = array1;
+// 결과 : first = 'one', second = 'two', three ='empty', others= []
+
+function fun(...args) {var [first, ...others] = args;}
+```
+
+
+
+#### ES6의 객체 전개 연산자 사용방법 알아보기
+
+##### 예전의 방법
+
+```javascript
+var objectOne = {one: 1, two: 2, other : 0};
+var objectTwo = {three : 3, four :4, other : -1};
+var combined = {
+    one: ObjectOne.one,
+    two: objectOne.two,
+    three : objectTwo.three,
+    four : objectTwo.four,
+};
+
+var combined = Object.assign({}, objectOne, objectTwo);
+// combined = {one : 1, two: 2, three : 3, four :4, other : -1}
+var combined = Object.assign({}, objectTwo, objectOne);
+// combined = {one : 1, two : 2, three : 3, four :4, other : 0}
+var others = Object.assign({}, combined);
+delete others.other;
+// others = {one : 1, two : 2, three :3 , four :4}
+```
+
+
+
+##### ES6의 방법
+
+```javascript
+var objectOne = {one: 1, two: 2, other :0};
+var objectTwo = {three : 3, four :4, other : -1};
+var combined = {
+    ...objectOne,
+    ...objectTwo,
+};
+// combined = {one :1, two : 2, three : 3, four :4, other : -1}
+var combined = {
+    ...objectTwo,
+    ...objectOne,
+};
+// combined = {one : 1, two :2 , three :3, four :4 , other : 0}
+var {other, ...others} = combined;
+//other = {one : 1, two :2, three : 3, four :4}
+```
+
+
+
+### 02-3 가변 변수와 불변 변수
+
+
+
+#### ES6의 가변 변수 사용 방법
+
+```javascript
+let num = 1;
+num = num * 3;
+let str = '문자';
+str = '다른 문자';
+let arr= [];
+arr = [1,2,3];
+let obj = {};
+obj = {name : '새 객체'};
+```
+
+- let 키워드는 변수를 어떤것이든 수정이 가능하다.
+
+
+
+#### ES6의 불변 변수 사용 방법 알아보기
+
+- 불변 변수는 읽기만 가능하다. 하지만 **불변 변수는 값을 다시 할당할 수 없는 것이지 값을 변경할 수는 있다.**
+
+
+
+```
+const num = 1;
+num = 3;	// 자료형 오류가 발생
+const str = '문자';
+str = '새 문자';		// 자료형 오류가 발생
+const arr = [];
+arr = [1,2,3]; 		// 자료형 오류가 발생
+const obj = {};
+obj = {name : '내 이름'}; // 자료형 오류가 발생
+```
+
+
+
+- 위의 코드는 오류가 발생하지만, 자바스크립트 내장 함수를 사용해서 값을 변경 할 수가 있다.
+
+```javascript
+const arr2 = [];
+arr2.push(1);		//arr2 =[1]
+arr2.splice(0,0,0);		// arr2 = [0,1]
+arr2.pop();		// arr2 = [1]
+const obj2 = {};
+obj2['name'] = '내이름';		// obj2 = {name : '내이름'}
+Object.assign(obj2, {name : '새이름'});		// obj2 ={name :'새이름'}
+delete obj2.name;	// obj2 = {}
+```
+
+- 하지만 이 책에서는 **불변 변수로 정의된 배열이나 객체를 내장 함수로 수정하는 것을 암묵적으로 금지하여 무결성을 유지**한다.
+
+
+
+```javascript
+const num1 = 1;
+const num2 = num1 *3;		//num2 = 3
+const str1 = '문자';
+const str2 = str1 +'추가';		// str2 = '문자추가'
+const arr3= [];
+const arr4 = arr3.concat(1);		// arr4 =[1]
+const arr5 = [...arr4, 2, 3]  // arr5= [1,2,3]
+const arr6 = arr5.slice(0,1);		//arr6 =[1], arr5= [1,2,3]
+const [first, ...arr7] = arr5;		// arr7 = [2,3] , first =1
+const obj3 = {name : '내이름', age :20};
+const objValue = {name :'새이름', age :obj3.age};
+const obj4 = {...obj3, name :'새이름'};		// obj4 = {name: '새이름' ,age : 20}
+const {name, ...obj5} = obj4;		// obj5 = age :20
+```
+
+
+
+| 가변 내장함수          | 무결성 내장 함수                              |
+| ---------------------- | --------------------------------------------- |
+| push(...items)         | concat(...items)                              |
+| splice(s, c, ...items) | slice(0,s)<br />.concat(...items, slice(s+c)) |
+| pop()                  | slice(0, len-1)                               |
+| shift()                | slice(1)                                      |
+
+- 가변 내장함수를 사용하는 것이아니라 무결정 내장 함수를 사용하자!
+- 실무에서도 가변 변수보다 불변 변수를 더 많이 사용한다.
+
+
+
+### 02-4 클래스
+
+#### 기존 자바스크립트의 클래스 표현 방법 알아보기
+
+- 기존 자바스크립트에서는 함수를 생성자 형태로 선언한 다음 상속이 필요한 변수나 함수를 prototype 객체에 할당하는 방법을 사용했다.
+
+```javascript
+function Shape (x,y){
+    this.name = 'Shape';
+    this.move(x,y);
+}
+// static 함수를 선언하는 예제
+Shape.create= function(x, y) {return new Shape(x,y);};
+// 인스턴스 함수를 선언하는 예제
+Shape.prototype.move = function(x,y) {
+    this.x = x;
+    this.y= y;
+}
+Shape.prototype.are = function(){
+    return 0;
+};
+// 혹은
+Shape.prototype = {
+    move : function(x, y){
+        this.x = x;
+        this.y = y;
+    },
+    area : function(){
+        return 0;
+    }
+};
+var s = new Shape(0,0);
+s.area();		// 0
+```
+
+- 상속
+
+```javascript
+function Circle(x, y, radius){
+    Shape.call(this, x, y);
+    this.name = 'Circle';
+    this.radius = radius;
+}
+Object.assign(Circle.prototype, Shape.prototype, {
+    area : function(){
+        return this.radius * this.radius;
+    }
+});
+var c = new Circle(0, 0, 10);
+c.area();		// 100
+```
+
+- 상속하기 위해서 Object에 내장된 assign() 함수를 이용했다. Shape.prototype에 정의된 area()를 새로운 area() 함수를 덮어씌웠다.
+
+
+
+#### ES6 클래스 사용 방법 알아보기
+
+- 기존의 Java 언어와 같은 class 정의 방법을 사용한다.
+
+```javascript
+class Shape{
+    static create(x,y) {return new Shape(x,y);}
+    name = 'Shape';
+	constructor(x,y) {
+        this.move(x,y);
+    }
+	move(x,y) {
+        this.x = x;
+        this.y = y;
+    }
+	area(){
+        return 0;
+    }
+}
+
+var s = new Shape(0,0);
+s.area();		// 0
+```
+
+- 생성자, 클래스 변수, 클래스 함수 정의에는 변수 선언을 위한 키워드(var, let, const...)를 사용하지 않는다는 점을 유의하자.
+
+
+
+-> 상속 기능
+
+```javascript
+class Circle extends Shape {
+    constructor(x,y,radius){
+        super(x,y);
+        this.radius = radius;
+    }
+    area() {
+        if(this.radius ===0 ) return super.area();
+        return this.radius * this.radius;
+    }
+}
+
+var c = new Circle(0, 0, 10);
+c.area();	//100
+```
+
+- ES6는 다중 상속이나 인터페이스는 지원하지 않는다.
