@@ -51,23 +51,23 @@ order by avg(salary) desc;
 
 관계형 데이터베이스는 2차원 표(테이블)에 데이터를 표현한다.
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/3e4edbe6-dab7-4566-8b66-ee39d2741304/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/3e4edbe6-dab7-4566-8b66-ee39d2741304/Untitled.png)
+![https://github.com/HongyeongJu/TIL/blob/master/Oracle/2_1.PNG)
 
 → 이렇게 하니까 중복되는게 많아지고 공간의 낭비가 심해진다.
 
 → 이를 해결하기 위해서 데이터 베이스 정규화를 해야하는 필요성이 발생한다.
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2764287f-d387-4c33-822c-77d424f1369c/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2764287f-d387-4c33-822c-77d424f1369c/Untitled.png)
+![https://github.com/HongyeongJu/TIL/blob/master/Oracle/2_2.PNG)
 
 주문테이블에 다 집어넣고 작업하던걸 , 주문에 관해 관리하는 테이블과 하나의 주문번호에 대해서 상세 내용을 정의하는 테이블을 나눠서 데이터를 저장한다.
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4925b27f-0f76-48bd-b8cd-6395142ff13c/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4925b27f-0f76-48bd-b8cd-6395142ff13c/Untitled.png)
+![https://github.com/HongyeongJu/TIL/blob/master/Oracle/2_3.PNG)
 
 → 부모테이블  : 기본키를 정의하고 있는 테이블
 
 → 자식테이블 : 부모의 기본키를 사용하고 있는 테이블
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/860e3489-853c-47b0-988d-dc9949b5042a/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/860e3489-853c-47b0-988d-dc9949b5042a/Untitled.png)
+![https://github.com/HongyeongJu/TIL/blob/master/Oracle/2_4.PNG)
 
 인사는 인사대로, 부서는 부서대로 정리했는데,
 
@@ -103,7 +103,7 @@ from 테이블명 1, 테이블명2.....
 - 조건이 1개 있다면 조인조건과 무조건 and조건으로 연결
 - select절에 두 개 이상의 테이블의 칼럼을 표시하지 않는다고 하더라도 조건에 사용되면 조인조건을 명시해야 한다.  이때, 직접적으로 사용되지 않는 테이블도 조건을 위해 필요하다면 명시
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f17c080e-dab3-4180-9129-1236cf325e52/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f17c080e-dab3-4180-9129-1236cf325e52/Untitled.png)
+![https://github.com/HongyeongJu/TIL/blob/master/Oracle/2_5.PNG)
 
 → 어떤 것을 비교해서 참조해서 가져와야 되는지 명시를 해놓지 않기 때문에 , 카티션 프로덕트가 실행됨
 
@@ -207,7 +207,7 @@ SQL> select e.empno, e.ename, e.sal
 
 → loc비교할 것이 없기때문에 그냥 그대로출력이됨..
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/adacaae1-d34f-4b66-9302-4744db61bb64/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/adacaae1-d34f-4b66-9302-4744db61bb64/Untitled.png)
+![https://github.com/HongyeongJu/TIL/blob/master/Oracle/2_6.PNG)
 
 →deptno을 가지고 deptno을 찾고 그리고 loc_code를 찾아서 location의 loc_code에서 찾고 거기서 일치하는 city 정보를 가지고 작업을 해야된다.
 
