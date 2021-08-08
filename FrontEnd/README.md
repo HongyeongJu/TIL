@@ -1,7 +1,7 @@
 # FrontEnd -패스트 캠퍼스 온라인 강의 정리
 
 - [Part1]()
-  1. [개요]()
+  1. [개요](https://github.com/HongyeongJu/TIL/blob/master/FrontEnd/Part%201/1.%EA%B0%9C%EC%9A%94.md)
   2. VS Code
   3. 무작정 시작하기
   4. 웹에서 시작하기
