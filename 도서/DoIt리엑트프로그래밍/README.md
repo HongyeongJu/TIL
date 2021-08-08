@@ -412,3 +412,75 @@ c.area();	//100
 ```
 
 - ES6는 다중 상속이나 인터페이스는 지원하지 않는다.
+
+
+
+
+
+### 02-5 화살표 함수
+
+- 화살표 함수는 ES6에 추가된 표현식을 사용하는 함수 : => 기호로 함수를 선언함.
+
+
+
+#### 기존의 자바스크립트의 함수 사용 방법
+
+```javascript
+function add(first, second){
+	return first + second;
+}
+// typeof add === 'function'
+
+var add = function(first, second){
+	// 이 함수 선언 방식은 함수에 이름이 없으므로 '익명 함수'라고 부른다.
+    return first + second;
+}
+// typeof add ==='function'
+```
+
+
+
+#### ES6의 화살표 함수 사용 방법 알아보기
+
+- 화살표 함수는 익명 함수를 선언하여 변수에 대입하는 방법과 유사하다.
+- 하지만 다른 점은 **function 키워드를 생략**하고 ()와 {} 사이에 =>를 표기하는 점이다.
+
+```javascript
+var add = (first, second) =>{
+    return first + second;
+};
+
+var add = (first, second) => first + second;
+
+var addAndMultiple = (first, second) => ({add :first + second, multiply :first * second});
+```
+
+- 화살표 함수는 함수 표현식을 간결하게 만들 수가 있고
+- 이후에 커링과 같은 디자인 패턴에서 사용되는 함수를 반환할 때 **'계단형 함수 선언'**과 같은 구조가 만들어지지 않게 해준다는 장점이 있음.
+
+
+
+```javascript
+function addNumber(num){
+    return function(value){
+        return num + value;
+    };
+}
+var addNumber  = num => value => num + value;
+```
+
+- 또한 화살표 함수는 콜백 함수의 this 범위로 생기는 오류를 피하기 위해 **bind() 함수를 사용하여 this 객체를 전달**한다.
+
+```javascript
+class MyClass{
+	value = 10;
+	constructor(){
+        var addThis2= function(first, second) {
+            return this.value + first + second;
+        }.bind(this);
+        
+		var addThis3 = (first , second) => this.value + first + second;
+    }
+}
+```
+
