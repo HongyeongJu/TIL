@@ -103,7 +103,7 @@ var operator1 = '곱셈값은 ' + (value1 * value2) + '입니다.';
 var operator2 = '불리언 값은' + (boolValue ? '참' : '거짓') + '입니다.';
 ```
 
-- product는 dictionary이다.  javascript에서도 3항연산자를 사용할 수 있나보다.
+- product는 object이다.  javascript에서도 3항연산자를 사용할 수 있나보다.
 
 
 
