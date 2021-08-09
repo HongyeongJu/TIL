@@ -1,0 +1,95 @@
+SQL> conn system/manager;
+Connected.
+SQL> create user shop identified by shop;
+
+User created.
+
+SQL> grant connect, resource to shop;
+
+Grant succeeded.
+
+SQL> alter user shop account unlock;
+
+User altered.
+
+SQL> alter user shop identified by shop;
+
+User altered.
+
+SQL> conn shop/shop;
+Connected.
+SQL> select * from tab;
+
+
+create table tb_mem
+(
+	mem_id varchar2(20) primary key,
+	mem_NM varchar2(20) not null,
+	mem_cd varchar2(20),
+	pwd varchar2(20) not null,
+	pwd_hint varchar2(20) not null,
+	pwd_hint_ans varchar2(20) not null,
+	ssn varchar2(20) unique,
+	birth_dt date not null,
+	male_flg varchar2(20),
+	tel_no varchar2(20),
+	cell_no varchar2(20),
+	addr varchar2(20) not null,
+	email varchar2(20),
+	email_rev_flg char(1),
+	mem_reg_dtm date
+);
+
+SQL> alter table tb_mem
+  2  add constraint ck_mem_cd check(mem_cd in ('Silver', 'Gold', 'VIP', 'VVIP', 'Guest'));
+
+
+create table tb_order
+(
+	ord_no varchar2(20) primary key,
+	mem_id varchar2(20),
+	ord_amt NUMBER(10,0),
+	rcvr_NM varchar2(20),
+	rcvr_tel_no varchar2(20),
+	rcvr_addr varchar2(20),
+	dlv_corp_no varchar2(20),
+	dlv_req varchar2(20),
+	ord_stat_cd varchar2(20),
+	ord_dtm varchar2(20)
+);
+
+alter table tb_order
+add constraint fk_mem_id foreign key(mem_id)
+			references tb_mem(mem_id);
+
+create table tb_product
+(
+	pro_no varchar2(20) primary key,
+	category_no varchar2(20),
+	prd_des varchar2(20),
+	sell_prc_unit number(10,0),
+	sell_start_dt date,
+	sell_end_dt date,
+	dlv_constraint varchar2(20),
+	as_flg char(1),
+	return_flg char(1),
+	img_org_file_NM varchar2(20),
+	img_gen_file_nm varchar2(20),
+	reg_id varchar2(20),
+	reg_dtm date
+);
+
+create table tb_order_product
+(
+	ord_no varchar2(20),
+	pro_no varchar2(20),
+	qty number(20, 0)
+);
+
+alter table tb_order_product
+add constraint fk_ord_no foreign key(ord_no)
+		references tb_order(ord_no);
+
+alter table tb_order_product
+add constraint fk_pro_no foreign key(pro_no)
+		references tb_product(pro_no);
