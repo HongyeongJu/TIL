@@ -1,0 +1,13 @@
+public class FirstExam
+{
+	public static void main(String[] args){
+		System.out.print("안녕하세요.");
+		System.out.println("홍영주입니다.");
+		System.out.println("홍영주입니다.");
+		System.out.println("홍영주입니다.");
+		System.out.println("홍영주입니다.");
+		System.out.println("홍영주입니다.");
+		System.out.println("홍영주입니다.");
+		System.out.println("홍영주입니다.");
+	}
+}
