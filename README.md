@@ -10,6 +10,7 @@
 ## 자바
 
 - [자바 개요](https://github.com/HongyeongJu/TIL/blob/master/Java/%EC%9E%90%EB%B0%94%EA%B0%9C%EC%9A%94.md)
+- [자바 기본](https://github.com/HongyeongJu/TIL/blob/master/Java/1.%EC%9E%90%EB%B0%94%EA%B8%B0%EB%B3%B8.md)
 
 
 
