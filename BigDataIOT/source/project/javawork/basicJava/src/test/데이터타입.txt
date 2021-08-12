@@ -1,0 +1,10 @@
+자바의 데이터 타입
+1. 기본형
+	boolean 
+	char
+	byte
+	short
+	int
+	long
+	
+2. 참조형
