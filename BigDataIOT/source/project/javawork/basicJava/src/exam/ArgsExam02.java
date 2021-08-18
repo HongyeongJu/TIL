@@ -6,7 +6,7 @@ public class ArgsExam02 {
 		// TODO Auto-generated method stub
 		for(int i = 0 ; i < args.length ; i++) {
 			
-			int num = Integer.valueOf(args[i]);.
+			int num = Integer.valueOf(args[i]);
 			String anw ="";
 			if(num % 2 == 0) {
 				anw ="Â¦¼ö";

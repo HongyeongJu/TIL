@@ -28,6 +28,7 @@ public class PersonTest02 {
 			String addr = key.next();
 			
 			Person p = new Person();
+			// 자바에서는 동일한 성격을 갖고 있는 데이터는 동일한 변수로 처리
 			p.name =name;
 			p.age = age;
 			p.addr = addr;
