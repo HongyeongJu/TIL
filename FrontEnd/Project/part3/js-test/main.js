@@ -1,11 +1,9 @@
-// 삼항 연산자
+// Truthy(참 같은 값)
+// true, {}, [], 1,2 , 'false', -12, '3.14' ...
 
-const a = 1 < 2
+// Falsy(거짓 같은 값)
+// false, '', null, undefiened, 0, -0, NaN
 
-if (a) {
-  console.log('참')
-}else {
-  console.log('거짓')
+if('false'){
+  console.log(123)
 }
-
-console.log(a ? '참' : '거짓')
