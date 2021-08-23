@@ -1,9 +1,16 @@
-// Truthy(참 같은 값)
-// true, {}, [], 1,2 , 'false', -12, '3.14' ...
+// 콜백(Callback)
+// 함수의 인수로 사용되는 함수
 
-// Falsy(거짓 같은 값)
-// false, '', null, undefiened, 0, -0, NaN
+// setTimeout(함수, 시간)
+// setTimeout 매개변수에서 함수가 들어온 것처럼 이것을 콜백함수라고 부른다.
 
-if('false'){
-  console.log(123)
+
+function timeout(callback){
+  setTimeout(()=> {
+    console.log('Heropy!')
+    callback()
+  }, 3000)
 }
+timeout(() => {
+  console.log('Done!')
+})
