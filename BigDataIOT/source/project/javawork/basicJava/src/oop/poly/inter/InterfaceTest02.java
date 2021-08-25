@@ -54,6 +54,7 @@ public class InterfaceTest02 {
 		 * if(myobj instanceof AA) { System.out.println("AA의 하위클래스"); }
 		 */
 		// Test객체는 AA, A,B,C타입의 하위객체이므로 네 개의 타입으로 선언된 변수에 전달될 수 있다.
+		// 유연하고 다양한 프로그램을 작성할 수 있다.
 		test(myobj);
 		test2(myobj);
 		test3(myobj);
