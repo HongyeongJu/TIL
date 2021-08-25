@@ -1,5 +1,5 @@
 package oop.inheritance;
-public class Wheeler {
+public abstract class Wheeler {
 	protected int velocity;
 	protected String carName;
 	protected int wheelNumber;
