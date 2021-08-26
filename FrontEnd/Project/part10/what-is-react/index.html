@@ -30,62 +30,40 @@
 </head>
 <body>
   <div id="root"></div>
-  <button id="btn_plus">+</button>
 
   <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
-  <script type="text/javascript">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+  
+  <script type="text/babel">
     console.log(React);
     console.log(ReactDOM);
-    
-    // const root = document.querySelector('#root');
-    // const btn_plus = document.querySelector('#btn_plus');
 
-    // let i = 0;
-    // root.innerHTML = '<p>init : 0 </p>';
-
-    // btn_plus.addEventListener('click', () =>{
-    //   root.innerHTML = `<p>init : ${++i}</p>`;
-    // })
-
-    // const component = {
-    //   message: 'init',
-    //   count: 0,
+    // // 정의
+    // class ClassComponent extends React.Component {
     //   render() {
-    //     return `<p>${this.message} : ${this.count}</p>`;
-    //   },
-    // };
-
-    // function render(rootElement, component) {
-    //   rootElement.innerHTML = component.render();
+    //     return <div>Hello</div>;
+    //   }
     // }
 
-    // // 초기화 
-    // render(document.querySelector('#root'), component);
+    // // 사용
+    // ReactDOM.render(
+    //   <ClassComponent />,
+    //   document.querySelector('#root')
+    // );
 
-    // document.querySelector('#btn_plus').addEventListener('click' , () =>{
-    //   component.message = 'update';
-    //   component.count = component.count+ 1;
 
-    //   render(document.querySelector('#root'), component);
-    // });
+    // 정의 1
+    // function FunctionComponent() {
+    //   return <div>Hello</div>;
+    // }
 
-    // <p hello="world">
-    // 컴포넌트를 어떠한 모습을 정의한것임
-    const Component = props => {     
-      // 리턴할 때는 꼭 리액트 엘리먼트로 리턴을 해줘야됨
-      // 요건 가상의 DOM이다. 
-      return React.createElement('p', null , `${props.message} : ${props.count}`);
-    }
+    // 정의 2
+    const FunctionComponent = () => <div>Hello</div>;
 
-    ReactDOM.render(React.createElement(Component, {message : 'init', count : 0}, null),
-     document.querySelector('#root'));
+    // 사용 
+    ReactDOM.render(<FunctionComponent /> , document.querySelector("#root"));
 
-    document.querySelector('#btn_plus').addEventListener('click', ()=>{
-      ReactDOM.render(React.createElement(Component, {message : 'update', count : 10}
-      , null),
-     document.querySelector('#root'));
-    })
   </script>
 </body>
 </html>
