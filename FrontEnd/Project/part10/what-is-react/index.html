@@ -1,69 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Example</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      border: 0;
-    }
-
-    #root p {
-      color: white;
-      font-size: 20px;
-      background-color: green;
-      text-align: center;
-      width: 200px;
-    }
-
-    #btn_plus {
-      background-color: red;
-      border: 2px solid #000000;
-      font-size: 15px;
-      width: 200px;
-    }
-  </style>
 </head>
+
 <body>
   <div id="root"></div>
 
   <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
-  
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
   <script type="text/babel">
     console.log(React);
     console.log(ReactDOM);
+    
 
-    // // 정의
-    // class ClassComponent extends React.Component {
-    //   render() {
-    //     return <div>Hello</div>;
-    //   }
-    // }
+    class Component extends React.Component{
+      // state 항상 객체여야된다.
 
-    // // 사용
-    // ReactDOM.render(
-    //   <ClassComponent />,
-    //   document.querySelector('#root')
-    // );
+      // state 정의 두번째 방법
+      constructor(props){
+        super(props);
 
+        // state 정의 두번쨰 방법
+        this.state = {count : 0};
+      }
 
-    // 정의 1
-    // function FunctionComponent() {
-    //   return <div>Hello</div>;
-    // }
+      render(){
+        return (
+          <div>
+              <h1>
+                {this.props.message} 이것은 클래스로 만든 컴포넌트 입니다.
+              </h1>
+              <p>{this.state.count}</p>
+         </div>
+         );
+      }
 
-    // 정의 2
-    const FunctionComponent = () => <div>Hello</div>;
+      componentDidMount() {
+        setTimeout(()=>{
+            //
+            // 객체를 통채로 만들어서 사용하는 방식
+            //this.state.count = this.state.count + 1 리액트 규칙에 어긋남
+            // this.setState({
+            //   count: this.state.count + 1
+            // });
 
-    // 사용 
-    ReactDOM.render(<FunctionComponent /> , document.querySelector("#root"));
+            // 이전 객체를 이용해서 사용하는 방법
+            this.setState((previousState) =>{
+              const newState = {count : previousState.count + 1};
+              return newState;
+            })
+        }, 1000);
+      }
+
+    }
+
+    ReactDOM.render(
+      <Component message="기본값 아님"/>
+       , document.querySelector("#root")
+       );
 
   </script>
 </body>
+
 </html>

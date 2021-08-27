@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+  <title>1.CountingBox</title>
+
+  <style>
+    * {
+      font-size: 20px;
+    }
+    
+    div{
+      display:flex;
+      text-align: center;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    div.countingBox{
+      background-color: aqua;
+      width: 200px;
+      height: 50px;
+    }
+
+    button.btn {
+      font-size: 30px;
+      font-weight: bold;
+      width: 200px;
+      height: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="root"></div>
+
+  <script type="text/babel">
+
+    // React component로 정의하기
+
+    class CountingBox extends React.Component {
+      render(){
+        return <div className="countingBox">Counting : {this.props.count}</div>
+      }
+    }
+
+    class PlusBtn extends React.Component{
+
+      constructor(props){
+        super(props);
+        
+        // 콜백에서 `this`가 작동하려면 아래와 같이 바인딩 해줘야됨.
+        this.handleClick = this.handleClick.bind(this);
+        
+        // state 정의 방법
+        this.state = {count : 0};
+      }
+
+      handleClick() {
+        this.setState(
+          {
+            count: this.state.count + 1
+          }
+        );
+        console.log(this.state.count);
+      }
+
+      render(){
+        
+        return React.createElement(
+          React.Fragment,
+          null,
+          <CountingBox count={this.state.count}/>,
+          <button className="btn" onClick={this.handleClick}>+</button>
+        );
+      }
+    }
+
+    ReactDOM.render(
+      <PlusBtn/>,
+      document.querySelector('#root')
+    );
+
+  </script>
+</body>
+</html>
