@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2_CountingBox2</title>
+  <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+
+  <style>
+    * {
+      width: 200px;
+      height: 50px;
+    }
+
+    div.total{
+      margin: 50px;
+      display:flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+    }
+
+    div.title{
+      background-color: aqua;
+      font-size: 30px;
+    }
+
+    div.number{
+      background-color:lightcoral;
+      font-size: 20px;
+    }
+    
+
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+
+    class TitleComponent extends React.Component{
+      render(){
+        return <div className="title">Counting</div>
+      }
+    }
+
+    class CountingComponent extends React.Component{
+      render(){
+        return <div className="number">0</div>;
+      }
+    }
+
+    class PlusButtonComponent extends React.Component{
+
+      handling (){
+        alert("hi");
+      }
+
+      render(){
+        return <button className="plus_btn" onClick={this.handling}>+</button>
+      }
+    }
+
+    class Total extends React.Component{
+
+      state = {
+        count : 0,
+      };
+
+      counting_function(){
+        this.setState(
+          {
+            count: this.state.count + 1
+          }
+        );
+        console.log(this.state.count);
+      }
+
+       render(){
+         return React.createElement(
+           'div',
+           {
+             className: "total"
+           },
+           <TitleComponent/>,
+           <CountingComponent/>,
+           <PlusButtonComponent props="dd"/>
+         );
+       }
+    }
+
+    ReactDOM.render(
+      <Total/>
+      , document.querySelector("#root")
+    );
+  
+  </script>
+</body>
+</html>

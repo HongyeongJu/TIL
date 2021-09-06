@@ -20,51 +20,40 @@
     console.log(ReactDOM);
     
 
-    class Component extends React.Component{
-      // state 항상 객체여야된다.
+    // function Component() {
+    //   return <div><button
+    //   onClick={()=> {
+    //     console.log('clicked');
+    //   }}>클릭</button></div>
+    // }
 
-      // state 정의 두번째 방법
-      constructor(props){
-        super(props);
+    class Component extends React.Component {
 
-        // state 정의 두번쨰 방법
-        this.state = {count : 0};
+      state ={
+        count : 0,
+      };
+
+      // constructor(props) {
+      //   super(props);
+      //   this.click = this.click.bind(this);
+      // }
+
+      render() {
+        
+        return <div>
+          <p>{this.state.count}</p>
+          <button onClick={this.click}>클릭</button>
+        </div>
       }
 
-      render(){
-        return (
-          <div>
-              <h1>
-                {this.props.message} 이것은 클래스로 만든 컴포넌트 입니다.
-              </h1>
-              <p>{this.state.count}</p>
-         </div>
-         );
+      click = () => {
+        console.log('clicked');
+        this.setState((state)=>({... state, 
+          count : state.count + 1}));
       }
-
-      componentDidMount() {
-        setTimeout(()=>{
-            //
-            // 객체를 통채로 만들어서 사용하는 방식
-            //this.state.count = this.state.count + 1 리액트 규칙에 어긋남
-            // this.setState({
-            //   count: this.state.count + 1
-            // });
-
-            // 이전 객체를 이용해서 사용하는 방법
-            this.setState((previousState) =>{
-              const newState = {count : previousState.count + 1};
-              return newState;
-            })
-        }, 1000);
-      }
-
     }
 
-    ReactDOM.render(
-      <Component message="기본값 아님"/>
-       , document.querySelector("#root")
-       );
+    ReactDOM.render(<Component />, document.querySelector('#root'));
 
   </script>
 </body>

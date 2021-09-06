@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script>
+  <style>
+      div .number{
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+        background-color: blue;
+        color: white;
+        width: 100px;
+        height: 50px;
+        text-align: center;
+      }
+      button.plus{
+        background-color: violet;
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+        text-align: center;
+      }
+
+      button.minus{
+        background-color: yellow;
+        width: 50px;
+        height: 50px;
+        text-align: center;
+      }
+
+      div .buttonContainer{
+        display: flex;
+      }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+
+    class CountingBoxComponent extends React.Component{
+
+
+      state ={
+        count :0,
+      };
+
+
+      render(){
+        return (<div>
+          <div className='number'>{this.state.count}</div>
+          <div className='buttonContainer'>  
+            <button onClick ={this.plusClick} className='plus'>+</button>
+            <button onClick={this.minusClick} className='minus'>-</button>
+          </div>
+        </div>);
+      }
+
+      plusClick = ()=>{
+        this.setState((state)=>({... state,
+          count : state.count + 1
+        }));
+        console.log(this.state.count);
+      }
+
+      minusClick = ()=>{
+        this.setState((state)=>({... state,
+          count: state.count -1
+        }));
+
+        console.log(this.state.count);
+      }
+    }
+
+    ReactDOM.render(
+      <CountingBoxComponent/>,
+      document.querySelector('#root')
+    );
+
+  </script>
+  
+</body>
+</html>
